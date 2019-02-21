@@ -2,7 +2,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -f pom.xml clean package'
             }
         }
         stage('Test') {
@@ -15,11 +15,10 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+        stage('Archive') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                sh 'curl -v -u admin:admin123 --upload-file web/target/*.war http://localhost:8081/nexus/content/repositories/Repo123/'
             }
         }
     }
 }
- 
