@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                sh 'curl -v -u admin:admin123 --upload-file web/target/*.jar http://http://54.235.47.80:8081/nexus/content/repositories/Repo123/'
+                sh 'curl -v -u admin:admin123 --upload-file /var/jenkins_home/workspace/jenkinsfile-git-maven/target/*.jar http://http://54.235.47.80:8081/nexus/content/repositories/Repo123/'
             }
         }
     }
